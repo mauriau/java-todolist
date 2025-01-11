@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class StringIsBlank {
-    public static boolean check(String str){
+    public static boolean isNullOrBlank(String str){
         return str == null || str.isBlank();
     }
 }

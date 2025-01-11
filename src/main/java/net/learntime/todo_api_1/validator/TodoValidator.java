@@ -13,11 +13,11 @@ public class TodoValidator implements TodoValidatorInterface {
     @Override
     public void validate(Todo todo)
     {
-        if(StringIsBlank.check(todo.getTitle())){
+        if(StringIsBlank.isNullOrBlank(todo.getTitle())){
             throw new TodoBadRequestException("title is mandatory");
         }
 
-        if (StringIsBlank.check(todo.getDescription())){
+        if (StringIsBlank.isNullOrBlank(todo.getDescription())){
             throw new TodoBadRequestException("description is mandatory");
         }
 

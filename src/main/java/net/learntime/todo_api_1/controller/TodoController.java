@@ -7,6 +7,8 @@ import net.learntime.todo_api_1.validator.TodoValidatorInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import io.swagger.v3.oas.annotations.Operation;
+
 import java.util.List;
 
 @RestController
@@ -19,17 +21,21 @@ public class TodoController {
     @Autowired
     private TodoValidatorInterface validator;
 
+
+    @Operation(summary = "Récupérer une seule taches Todos")
     @GetMapping
     public List<Todo> getAll(){
         return repository.findAll();
     }
 
+    @Operation(summary = "Récupérer une seule tache via so id")
     @GetMapping("{id}")
     public Todo getById(@PathVariable Long id)
     {
         return repository.findById(id).orElseThrow(() -> new TodoNotFoundException(id));
     }
 
+    @Operation(summary = "Créer une tache Todos")
     @PostMapping
     public Todo create(@RequestBody Todo todo)
     {
@@ -38,6 +44,7 @@ public class TodoController {
         return repository.save(todo);
     }
 
+    @Operation(summary = "Mettre à jour une tache Todos via son id")
     @PutMapping("{id}")
     public Todo update(@PathVariable Long id, @RequestBody Todo todo)
     {
@@ -53,6 +60,7 @@ public class TodoController {
         return entity;
     }
 
+    @Operation(summary = "Supprimer une tache Todos via son Id")
     @DeleteMapping("{id}")
     public void delete(@PathVariable Long id)
     {

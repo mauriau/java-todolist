@@ -7,11 +7,10 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
-public class GlobalExceptionHandler {
+public class TodoBadRequestExceptionHandler {
 
-    @ExceptionHandler(value = Exception.class)
-    public ResponseEntity<ApiError> handleException(Exception exception)
-    {
-        return new ResponseEntity<>(new ApiError(exception.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+    @ExceptionHandler(value = TodoBadRequestException.class)
+    public ResponseEntity<ApiError> handleException(TodoBadRequestException exception) {
+        return new ResponseEntity<>(new ApiError(exception.getMessage()), HttpStatus.BAD_REQUEST);
     }
 }
